@@ -11,15 +11,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
-    LocalTime openingTime = LocalTime.parse("10:30:00");
-    LocalTime closingTime = LocalTime.parse("22:00:00");
-    Restaurant restaurant=new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+    Restaurant restaurant;
 
     @BeforeEach
     public void beforeEachTest(){
-        //LocalTime openingTime = LocalTime.parse("10:30:00");
-        //LocalTime closingTime = LocalTime.parse("22:00:00");
-        //restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime closingTime = LocalTime.parse("22:00:00");
+        restaurant=new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
     }
@@ -68,5 +66,17 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //When menu items are passed to the method, total cost of the items should be returned
+    //Failure test case
+    @Test
+    public void finding_price_of_items_that_do_not_exist_on_menu_should_throw_exception() throws itemNotFoundException {
+        List<String> itemList = new ArrayList<String>();
+        itemList.add("Banh Mi");
+        itemList.add("Tortellini");
+        int totalCost = restaurant.findTotalPriceOfMenuItems(itemList);
+        assertThrows(itemNotFoundException.class,
+                ()->restaurant.findTotalPriceOfMenuItems(itemList));
+    }
 
 }

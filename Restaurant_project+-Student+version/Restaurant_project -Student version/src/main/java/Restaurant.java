@@ -64,4 +64,7 @@ public class Restaurant {
         return name;
     }
 
+    public int findTotalPriceOfMenuItems(List<String> itemList) throws itemNotFoundException{
+            return 0;
+    }
 }
