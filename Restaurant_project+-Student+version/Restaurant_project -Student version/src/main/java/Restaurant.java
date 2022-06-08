@@ -65,6 +65,15 @@ public class Restaurant {
     }
 
     public int findTotalPriceOfMenuItems(List<String> itemList) throws itemNotFoundException{
-            return 0;
+        int totalPrice=0;
+        for(String item : itemList){
+            Item menuElement = findItemByName(item);
+            if (menuElement == null)
+                throw new itemNotFoundException(item);
+
+            int costOfItem = Integer.parseInt(menuElement.toString().split(":")[1].trim());
+            totalPrice = totalPrice + costOfItem;
+        }
+        return totalPrice;
     }
 }

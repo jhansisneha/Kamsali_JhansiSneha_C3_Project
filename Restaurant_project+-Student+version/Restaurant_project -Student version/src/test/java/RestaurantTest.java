@@ -79,4 +79,14 @@ class RestaurantTest {
                 ()->restaurant.findTotalPriceOfMenuItems(itemList));
     }
 
+    //passing test case
+    @Test
+    public void adding_items_should_return_the_total_cost_of_items_on_menu() throws itemNotFoundException {
+        List<String> itemList = new ArrayList<String>();
+        itemList.add("Vegetable lasagne");
+        itemList.add("Sweet corn soup");
+        int totalCost = restaurant.findTotalPriceOfMenuItems(itemList);
+        assertEquals(388,totalCost);
+    }
+
 }
